@@ -5,9 +5,12 @@ library(dplyr)
 ## unzip and load data using fread (data.table) and then filter the data for the required days
 
 ## download the file from the repository and unzip
-temp <- tempfile()
-download.file("https://archive.ics.uci.edu/ml/machine-learning-databases/00235/household_power_consumption.zip", temp) 
-unzip(temp, exdir = "./data/")
+if (!file.exists("./data/household_power_consumption.txt"))
+{
+        temp <- tempfile()
+        download.file("https://archive.ics.uci.edu/ml/machine-learning-databases/00235/household_power_consumption.zip", temp) 
+        unzip(temp, exdir = "./data/")
+}
 
 ## Load the file and filter the required data
 newFile <- fread("./data/household_power_consumption.txt", na.strings = "?")
